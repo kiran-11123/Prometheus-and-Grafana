@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const requestCount_1 = require("./monitoring/requestCount");
 //prom-express
+const requestHistogram_1 = require("./monitoring/requestHistogram");
 const requestGauge_1 = require("./monitoring/requestGauge");
 const prom_client_1 = __importDefault(require("prom-client"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(requestCount_1.requestCount);
 app.use(requestGauge_1.activeuserFunction);
+app.use(requestHistogram_1.requestHistogramFunction);
 app.get("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let user = {
         name: "Kiran",

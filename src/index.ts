@@ -1,7 +1,7 @@
 import express from 'express';
 import { requestCount  } from './monitoring/requestCount';
 //prom-express
-
+import { requestHistogramFunction } from './monitoring/requestHistogram';
 import { activeuserFunction } from './monitoring/requestGauge';
 import  client from 'prom-client'
 
@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(requestCount)
 app.use(activeuserFunction);
+app.use(requestHistogramFunction)
 
 
 
