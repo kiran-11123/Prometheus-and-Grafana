@@ -13,16 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const requestCount_1 = require("./monitoring/requestCount");
 //prom-express
+const prom_client_1 = __importDefault(require("prom-client"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-function middleware(req, res, next) {
-    const startTime = Date.now();
-    next();
-    const endTime = Date.now() - startTime;
-    console.log("Total Time took is ", endTime, "ms");
-}
-app.use(middleware);
+app.use(requestCount_1.requestCount);
 app.get("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let user = {
         name: "Kiran",
@@ -32,10 +28,15 @@ app.get("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         message: "First GET request",
     });
 }));
-app.post("/user", middleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return res.status(200).json({
+app.post("/user1", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
         message: "First POST request"
     });
+}));
+app.get("/metrics", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const metrics = yield prom_client_1.default.register.metrics();
+    res.set('Content-type', prom_client_1.default.register.contentType);
+    res.end(metrics);
 }));
 app.listen(5000, () => {
     console.log("Server is running");

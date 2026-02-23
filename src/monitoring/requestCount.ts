@@ -14,7 +14,7 @@ export function requestCount(req :any,res:any,next:any) {
       
 
         method : req.method,
-        route : req.route.path,
+        route : req.path,
          
     });
 

@@ -1,9 +1,12 @@
 import express from 'express';
-
+import { requestCount } from './monitoring/requestCount';
 //prom-express
+import  client from 'prom-client'
+
 const app = express();
 
 app.use(express.json());
+app.use(requestCount)
 
 
 
@@ -27,7 +30,7 @@ app.get("/user" , async (req,res)=>{
 
 
 
-app.post("/user"  ,  async (req , res)=>{
+app.post("/user1"  ,  async (req , res)=>{
      
      res.status(200).json({
         message : "First POST request"
@@ -36,7 +39,12 @@ app.post("/user"  ,  async (req , res)=>{
 
 
 
-
+app.get("/metrics" , async(req,res)=>{
+     
+    const metrics = await client.register.metrics();
+    res.set('Content-type' , client.register.contentType);
+    res.end(metrics);
+})
 
 
 app.listen(5000 , ()=>{
