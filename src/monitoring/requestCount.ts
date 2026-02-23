@@ -1,7 +1,7 @@
 import  client from 'prom-client'
 
 const requestCounter = new client.Counter({
-    name:  "Request_Count",
+    name:  "request_count",
     help:"Total request count",
     labelNames : ["method" , "route"]
      

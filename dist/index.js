@@ -42,6 +42,6 @@ app.get("/metrics", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.set('Content-type', prom_client_1.default.register.contentType);
     res.end(metrics);
 }));
-app.listen(5000, () => {
+app.listen(3000, () => {
     console.log("Server is running");
 });

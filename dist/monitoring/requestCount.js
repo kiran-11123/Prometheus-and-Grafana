@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.requestCount = requestCount;
 const prom_client_1 = __importDefault(require("prom-client"));
 const requestCounter = new prom_client_1.default.Counter({
-    name: "Request_Count",
+    name: "request_count",
     help: "Total request count",
     labelNames: ["method", "route"]
 });
