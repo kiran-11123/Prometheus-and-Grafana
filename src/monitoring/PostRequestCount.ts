@@ -13,9 +13,10 @@ export function PostrequestCounterFunction(req  : Request , res : Response , nex
         
     PostRequestCounter.inc({
          method : req.method ,
-         route : req.route
+         route : req.path
     })
-
+     
+    next();
      
 }
 

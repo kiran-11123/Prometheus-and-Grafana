@@ -13,6 +13,7 @@ const PostRequestCounter = new prom_client_1.default.Counter({
 function PostrequestCounterFunction(req, res, next) {
     PostRequestCounter.inc({
         method: req.method,
-        route: req.route
+        route: req.path
     });
+    next();
 }
