@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/monitoring/requestcount.ts","./src/monitoring/requestgauge.ts","./src/monitoring/requesthistogram.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/monitoring/postrequestcount.ts","./src/monitoring/requestcount.ts","./src/monitoring/requestgauge.ts","./src/monitoring/requesthistogram.ts"],"version":"5.8.3"}

@@ -4,7 +4,7 @@ import { requestCount  } from './monitoring/requestCount';
 import { requestHistogramFunction } from './monitoring/requestHistogram';
 import { activeuserFunction } from './monitoring/requestGauge';
 import  client from 'prom-client'
-
+import { PostrequestCounterFunction } from './monitoring/PostRequestCount';
 const app = express();
 
 app.use(express.json());
@@ -34,7 +34,7 @@ app.get("/user" , async (req,res)=>{
 
 
 
-app.post("/user1"  ,  async (req , res)=>{
+app.post("/user1"  , PostrequestCounterFunction ,  async (req , res)=>{
      
      res.status(200).json({
         message : "First POST request"

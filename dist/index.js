@@ -18,6 +18,7 @@ const requestCount_1 = require("./monitoring/requestCount");
 const requestHistogram_1 = require("./monitoring/requestHistogram");
 const requestGauge_1 = require("./monitoring/requestGauge");
 const prom_client_1 = __importDefault(require("prom-client"));
+const PostRequestCount_1 = require("./monitoring/PostRequestCount");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(requestCount_1.requestCount);
@@ -32,7 +33,7 @@ app.get("/user", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         message: "First GET request",
     });
 }));
-app.post("/user1", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.post("/user1", PostRequestCount_1.PostrequestCounterFunction, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({
         message: "First POST request"
     });
